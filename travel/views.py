@@ -13,7 +13,7 @@ from collections import defaultdict
 def index(request):
 	if (request.GET.get('source', None) and request.GET.get('dest', None)):
 
-		data = runProgram(request.GET.get('source'), request.GET.get('dest'))
+		data = runProgram(int(request.GET.get('source')), int(request.GET.get('dest')))
 
 		# test = [
 		# 		  [
@@ -108,7 +108,7 @@ def find_k_shortest_paths(graph, source, target, K, first_arrival_time):
 
     return k_shortest_paths
 
-def runProgram(s, d):
+def runProgram(source, target):
     V = 1000  # Number of vertices
     graph = [[] for _ in range(V)]
     source_destination_weights = defaultdict(dict)
@@ -144,8 +144,8 @@ def runProgram(s, d):
 
 
 
-    source = cities.index(s) # rand.randint(0, 999)
-    target = cities.index(d)  # rand.randint(0, 999)
+    # source = cities.index(s) # rand.randint(0, 999)
+    # target = cities.index(d)  # rand.randint(0, 999)
     K = 3
     arrival_time = 240
 
