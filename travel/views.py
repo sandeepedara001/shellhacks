@@ -11,9 +11,9 @@ from collections import defaultdict
 # Create your views here.
 
 def index(request):
-	if (request.GET.get('source', None) and request.GET.get('dest', None)):
-
-		data = runProgram(int(request.GET.get('source')), int(request.GET.get('dest')))
+    if (request.GET.get('source', None) and request.GET.get('dest', None)):
+        print(request.GET.get('source'))
+        data = runProgram(int(request.GET.get('source')), int(request.GET.get('dest')))
 
 		# test = [
 		# 		  [
@@ -46,11 +46,11 @@ def index(request):
 		# 		  ]
 		# 		]
 
-		testJson = json.dumps(data)
+        testJson = json.dumps(data)
 		# return HttpResponse(request.GET['source'] + " " + request.GET['dest'])
-		return HttpResponse(testJson)
-	else:
-		return HttpResponse("Please pass parameters properly!")
+        return HttpResponse(testJson)
+    else:
+        return HttpResponse("Please pass parameters properly!")
 
 
 
@@ -108,7 +108,7 @@ def find_k_shortest_paths(graph, source, target, K, first_arrival_time):
 
     return k_shortest_paths
 
-def runProgram(source, target):
+def runProgram(s, t):
     V = 1000  # Number of vertices
     graph = [[] for _ in range(V)]
     source_destination_weights = defaultdict(dict)
@@ -149,7 +149,7 @@ def runProgram(source, target):
     K = 3
     arrival_time = 240
 
-    k_shortest_paths = find_k_shortest_paths(graph, source, target, K, arrival_time)
+    k_shortest_paths = find_k_shortest_paths(graph, s, t, K, arrival_time)
 
     l1 = []
     print(len(k_shortest_paths))
